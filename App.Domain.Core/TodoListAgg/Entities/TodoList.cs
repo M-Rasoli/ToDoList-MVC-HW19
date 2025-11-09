@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace App.Domain.Core.TodoListAgg.Entities
+{
+    public class TodoList
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string DueDateShamsi { get; set; }
+        public DateTime DueDate { get; set; }
+    }
+}
