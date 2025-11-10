@@ -28,8 +28,7 @@ namespace App.EndPoints.Presentation.MVC.Controllers
             }
             else
             {
-                //123123123
-                return View();
+                return RedirectToAction("Index","User");
             }
 
         }
