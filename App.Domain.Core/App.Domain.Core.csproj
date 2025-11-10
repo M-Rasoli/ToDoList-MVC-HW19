@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="CategoryAgg\Contracts\" />
     <Folder Include="CategoryAgg\Dtos\" />
-    <Folder Include="CategoryAgg\Entities\" />
     <Folder Include="TodoListAgg\Dtos\" />
   </ItemGroup>
 

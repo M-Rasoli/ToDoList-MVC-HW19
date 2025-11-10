@@ -1,7 +1,24 @@
+using App.Domain.Core.UserAgg.Contracts;
+using App.Domain.Services.UserAgg;
+using App.Infrastructure.Persistence;
+using App.Infrastructure.Repositories.UserAgg;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(@"Server=DESKTOP-I05OKD5\SQLEXPRESS;Database=TodoList-MVC;Integrated Security=true;TrustServerCertificate=true;"));
+
+builder.Services.AddSession();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddScoped<IUserService, UserService>();
+
+
 
 var app = builder.Build();
 

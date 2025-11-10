@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using App.Domain.Core.TodoListAgg.Entities;
+
+namespace App.Domain.Core.CategoryAgg.Entities
+{
+    public class Category
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public List<TodoList> TodoLists { get; set; }
+    }
+}
