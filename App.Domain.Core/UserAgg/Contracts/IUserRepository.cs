@@ -12,5 +12,6 @@ namespace App.Domain.Core.UserAgg.Contracts
         LoginUserDto Login(string userName);
         int Register(RegisterUserDto user);
         bool IsUserNameExist(string userName);
+        GetUserTasksDto GetUserTasks(int userId);
     }
 }

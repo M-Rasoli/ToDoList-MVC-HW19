@@ -12,6 +12,16 @@ namespace App.Infrastructure.Repositories.UserAgg
 {
     public class UserRepository(AppDbContext _context) : IUserRepository
     {
+        public GetUserTasksDto GetUserTasks(int userId)
+        {
+            return _context.Users.Where(u => u.Id== userId)
+                .Select(u => new GetUserTasksDto()
+                {
+                    UserTasks = u.TdoLists,
+                }).FirstOrDefault();
+
+        }
+
         public bool IsUserNameExist(string userName)
         {
             return _context.Users.Any(u => u.UserName.ToLower() == userName);
@@ -22,6 +32,7 @@ namespace App.Infrastructure.Repositories.UserAgg
             return _context.Users.Where(u => u.UserName.ToLower() == userName)
                 .Select(x => new LoginUserDto()
                 {
+                    Id = x.Id,
                     UserName = x.UserName,
                     Password = x.Password
 
@@ -39,5 +50,6 @@ namespace App.Infrastructure.Repositories.UserAgg
             _context.Users.Add(newUser);
             return _context.SaveChanges();
         }
+
     }
 }

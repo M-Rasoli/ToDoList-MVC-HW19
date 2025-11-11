@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App.Domain.Core.TodoListAgg.Entities;
 
 namespace App.Domain.Core.UserAgg.Dtos
 {
-    public class LoginUserDto
+    public class GetUserTasksDto
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public List<TodoList> UserTasks { get; set; }
     }
 }

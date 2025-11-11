@@ -28,6 +28,11 @@ namespace App.EndPoints.Presentation.MVC.Controllers
             }
             else
             {
+                LoggedInUser.OnlineUSer = new OnlineUser()
+                {
+                    Id = result.Data.Id,
+                    Username = result.Data.UserName
+                };
                 return RedirectToAction("Index","User");
             }
 

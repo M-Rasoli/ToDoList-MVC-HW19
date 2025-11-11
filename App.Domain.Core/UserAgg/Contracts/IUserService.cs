@@ -10,7 +10,8 @@ namespace App.Domain.Core.UserAgg.Contracts
 {
     public interface IUserService
     {
-        Result<bool> Login(string userName, string password);
+        Result<LoginUserDto> Login(string userName, string password);
         Result<bool> Register(RegisterUserDto user);
+        Result<GetUserTasksDto> GetUserTasks(int userId);
     }
 }

@@ -11,21 +11,34 @@ namespace App.Domain.Services.UserAgg
 {
     public class UserService(IUserRepository userRepository) : IUserService
     {
-        public Result<bool> Login(string userName, string password)
+        public Result<GetUserTasksDto> GetUserTasks(int userId)
+        {
+            var result = userRepository.GetUserTasks(userId);
+            if (result is not null)
+            {
+                return Result<GetUserTasksDto>.Success(message:"",result);
+            }
+            else
+            {
+                return Result<GetUserTasksDto>.Failure(message:"لیست کار های شما خالی است.");
+            }
+        }
+
+        public Result<LoginUserDto> Login(string userName, string password)
         {
             var user = userRepository.Login(userName);
             if (user is null)
             {
-                return Result<bool>.Failure(message:"نام کاربری یا رمز عبور اشتباه است.");
+                return Result<LoginUserDto>.Failure(message:"نام کاربری یا رمز عبور اشتباه است.");
             }
 
             if (user.Password != password)
             {
-                return Result<bool>.Failure(message: "نام کاربری یا رمز عبور اشتباه است.");
+                return Result<LoginUserDto>.Failure(message: "نام کاربری یا رمز عبور اشتباه است.");
             }
             else
             {
-                return Result<bool>.Success(message:"خوش آمدید");
+                return Result<LoginUserDto>.Success(message:"خوش آمدید",user);
             }
                 
         }
