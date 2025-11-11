@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Readify.Domain._common.Entities;
+using App.Domain.Core._common.Entities;
 
 namespace App.Domain.Core.UserAgg.Contracts
 {

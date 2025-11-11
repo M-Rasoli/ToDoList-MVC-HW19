@@ -9,6 +9,10 @@ namespace App.Domain.Core.UserAgg.Dtos
 {
     public class GetUserTasksDto
     {
-        public List<TodoList> UserTasks { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public bool IsDone { get; set; }
+        public string DueDateShamsi { get; set; }
+        public DateTime DueDate { get; set; }
     }
 }

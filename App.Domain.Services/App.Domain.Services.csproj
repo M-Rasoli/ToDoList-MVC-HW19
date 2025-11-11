@@ -10,9 +10,4 @@
     <ProjectReference Include="..\App.Domain.Core\App.Domain.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CategoryAgg\" />
-    <Folder Include="TodoListAgg\" />
-  </ItemGroup>
-
 </Project>

@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="CategoryAgg\Contracts\" />
-    <Folder Include="CategoryAgg\Dtos\" />
-    <Folder Include="TodoListAgg\Dtos\" />
-  </ItemGroup>
-
 </Project>

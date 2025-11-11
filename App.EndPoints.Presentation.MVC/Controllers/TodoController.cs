@@ -1,11 +1,12 @@
-﻿using App.Domain.Core.TodoListAgg.Contracts;
-using App.Domain.Core.UserAgg.Contracts;
+﻿using App.Domain.Core.CategoryAgg.Contracts;
+using App.Domain.Core.TodoListAgg.Contracts;
+using App.Domain.Services.TodoListAgg;
 using App.EndPoints.Presentation.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoints.Presentation.MVC.Controllers
 {
-    public class UserController(IUserService userService, ITodoService todoService) : Controller
+    public class TodoController(ITodoService todoService, ICategoryService categoryService) : Controller
     {
         public IActionResult Index()
         {
@@ -19,6 +20,15 @@ namespace App.EndPoints.Presentation.MVC.Controllers
             {
                 return View(tasks.Data);
             }
+        }
+        [HttpGet]
+        public IActionResult Add()
+        {
+            AddNewTaskModel task = new AddNewTaskModel()
+            {
+                Categories = categoryService.GetCategories();
+            };
+            return View(task);
         }
     }
 }

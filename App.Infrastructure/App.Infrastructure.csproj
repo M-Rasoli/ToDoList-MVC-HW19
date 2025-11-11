@@ -20,11 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\CategoryAgg\" />
-    <Folder Include="Repositories\TodoListAgg\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\App.Domain.Core\App.Domain.Core.csproj" />
   </ItemGroup>
 

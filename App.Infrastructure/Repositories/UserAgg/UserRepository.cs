@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App.Domain.Core.TodoListAgg.Entities;
 using App.Domain.Core.UserAgg.Contracts;
 using App.Domain.Core.UserAgg.Dtos;
 using App.Domain.Core.UserAgg.Entities;
 using App.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace App.Infrastructure.Repositories.UserAgg
 {
     public class UserRepository(AppDbContext _context) : IUserRepository
     {
-        public GetUserTasksDto GetUserTasks(int userId)
+        public List<GetUserTasksDto> GetUserTasks(int userId)
         {
             return _context.Users.Where(u => u.Id== userId)
+                .Include(u => u.TdoLists)
                 .Select(u => new GetUserTasksDto()
                 {
-                    UserTasks = u.TdoLists,
-                }).FirstOrDefault();
+                    
+                }).Tolist();
 
         }
 
