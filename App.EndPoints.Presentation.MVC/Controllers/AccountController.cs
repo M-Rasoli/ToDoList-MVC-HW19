@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoints.Presentation.MVC.Controllers
 {
-    public class AccountController(IUserService userService) : Controller
+    public class AccountController(IUserAppService userAppService) : Controller
     {
         public IActionResult Index()
         {
@@ -19,7 +19,7 @@ namespace App.EndPoints.Presentation.MVC.Controllers
         [HttpPost]
         public IActionResult Login(LoginUserViewModel model)
         {
-            var result = userService.Login(model.UserName, model.Password);
+            var result = userAppService.Login(model.UserName, model.Password);
 
             if (!result.IsSuccess)
             {

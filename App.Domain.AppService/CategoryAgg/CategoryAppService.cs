@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using App.Domain.Core.CategoryAgg.Contracts;
 using App.Domain.Core.CategoryAgg.Dtos;
 
-namespace App.Domain.Services.CategoryAgg
+namespace App.Domain.AppService.CategoryAgg
 {
-    public class CategoryService(ICategoryRepository categoryRepository) : ICategoryService
+    public class CategoryAppService(ICategoryService categoryService) : ICategoryAppService
     {
         public List<GetCategoryDto> GetCategories()
-        { 
-            return categoryRepository.GetCategories();
+        {
+            return categoryService.GetCategories();
         }
     }
 }

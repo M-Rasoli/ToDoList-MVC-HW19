@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Readify.Domain._common.Entities;
 using App.Domain.Core._common.Entities;
 
 namespace App.Domain.Core.UserAgg.Contracts
 {
     public interface IUserService
     {
-        Result<LoginUserDto> Login(string userName, string password);
-        Result<bool> Register(RegisterUserDto user);
-        Result<GetUserTasksDto> GetUserTasks(int userId);
+        LoginUserDto Login(string userName);
+        int Register(RegisterUserDto user);
+        GetUserTasksDto GetUserTasks(int userId);
+        bool IsUserNameExist(string userName);
     }
 }

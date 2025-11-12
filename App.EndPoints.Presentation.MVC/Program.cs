@@ -1,4 +1,7 @@
 using System.Reflection;
+using App.Domain.AppService.CategoryAgg;
+using App.Domain.AppService.TodoListAgg;
+using App.Domain.AppService.UserAgg;
 using App.Domain.Core.CategoryAgg.Contracts;
 using App.Domain.Core.TodoListAgg.Contracts;
 using App.Domain.Core.UserAgg.Contracts;
@@ -28,6 +31,10 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITodoService, TodoService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<IUserAppService, UserAppService>();
+builder.Services.AddScoped<ITodoAppService,TodoAppService>();
+builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
 
 
 

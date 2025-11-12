@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoints.Presentation.MVC.Controllers
 {
-    public class TodoController(ITodoService todoService, ICategoryService categoryService) : Controller
+    public class TodoController(ITodoAppService todoAppService, ICategoryAppService categoryAppService) : Controller
     {
         public IActionResult Index()
         {
-            var tasks = todoService.GetUserTasks(LoggedInUser.OnlineUSer.Id);
+            var tasks = todoAppService.GetUserTasks(LoggedInUser.OnlineUSer.Id);
             if (!tasks.IsSuccess)
             {
                 ViewBag.Error = tasks.Message;
@@ -26,7 +26,7 @@ namespace App.EndPoints.Presentation.MVC.Controllers
         {
             AddNewTaskModel task = new AddNewTaskModel()
             {
-                Categories = categoryService.GetCategories();
+                Categories = categoryAppService.GetCategories(),
             };
             return View(task);
         }

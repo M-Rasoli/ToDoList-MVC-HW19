@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoints.Presentation.MVC.Controllers
 {
-    public class UserController(IUserService userService, ITodoService todoService) : Controller
+    public class UserController(IUserAppService userAppService, ITodoAppService todoAppService) : Controller
     {
         public IActionResult Index()
         {
-            var tasks = todoService.GetUserTasks(LoggedInUser.OnlineUSer.Id);
+            var tasks = todoAppService.GetUserTasks(LoggedInUser.OnlineUSer.Id);
             if (!tasks.IsSuccess)
             {
                 ViewBag.Error = tasks.Message;

@@ -12,17 +12,10 @@ namespace App.Domain.Services.TodoListAgg
 {
     public class TodoService(ITodoRepository todoRepository) : ITodoService
     {
-        public Result<List<GetUserTasksDto>> GetUserTasks(int userId)
+        public List<GetUserTasksDto> GetUserTasks(int userId)
         {
             var result = todoRepository.GetUserTasks(userId);
-            if (result.Count < 0)
-            {
-                return Result<List<GetUserTasksDto>>.Failure(message:"لیست کار های شما خالی است.");
-            }
-            else
-            {
-                return Result<List<GetUserTasksDto>>.Success(message:"لیست کار ها." , result);
-            }
+            return result;
         }
     }
 }
