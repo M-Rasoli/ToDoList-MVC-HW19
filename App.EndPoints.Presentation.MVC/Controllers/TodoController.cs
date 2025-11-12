@@ -54,5 +54,20 @@ namespace App.EndPoints.Presentation.MVC.Controllers
                 return RedirectToAction("Index","Todo");
             }
         }
+
+        [HttpPost]
+        public IActionResult ChangeTaskStatus(int taskId)
+        {
+            var result = todoAppService.ChangeTaskStatus(taskId);
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Index", "Todo");
+            }
+            else
+            {
+                ViewBag.Error = result.Message;
+                return RedirectToAction("Index", "Todo");
+            }
+        }
     }
 }

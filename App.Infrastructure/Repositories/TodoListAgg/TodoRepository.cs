@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using App.Domain.Core.TodoListAgg.Contracts;
@@ -8,6 +9,7 @@ using App.Domain.Core.TodoListAgg.Dtos;
 using App.Domain.Core.TodoListAgg.Entities;
 using App.Domain.Core.UserAgg.Dtos;
 using App.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace App.Infrastructure.Repositories.TodoListAgg
 {
@@ -38,6 +40,13 @@ namespace App.Infrastructure.Repositories.TodoListAgg
                     DueDate = x.DueDate,
                     DueDateShamsi = x.DueDateShamsi
                 }).ToList();
+        }
+
+        public int ChangeTaskStatus(int taskId)
+        {
+            var task = _context.TodoLists.FirstOrDefault(t => t.Id == taskId);
+            task.IsDone = !task.IsDone;
+            return _context.SaveChanges();
         }
     }
 }

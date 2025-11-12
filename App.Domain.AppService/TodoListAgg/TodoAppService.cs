@@ -37,5 +37,19 @@ namespace App.Domain.AppService.TodoListAgg
                 return Result<List<GetUserTasksDto>>.Success(message: "لیست کار ها.", result);
             }
         }
+
+        public Result<bool> ChangeTaskStatus(int taskId)
+        {
+            var result = todoService.ChangeTaskStatus(taskId);
+            if (result > 0)
+            {
+                return Result<bool>.Success(message: ".");
+            }
+            else
+            {
+                return Result<bool>.Failure(message: "مشکلی پیش آمده لحظاتی بعد تلاش کنید.");
+            }
+
+        }
     }
 }

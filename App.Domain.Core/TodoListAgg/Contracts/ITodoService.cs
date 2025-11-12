@@ -13,5 +13,6 @@ namespace App.Domain.Core.TodoListAgg.Contracts
     {
         List<GetUserTasksDto> GetUserTasks(int userId);
         int AddNewTask(AddNewTodoDto task);
+        int ChangeTaskStatus(int taskId);
     }
 }

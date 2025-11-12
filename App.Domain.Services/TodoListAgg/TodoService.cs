@@ -24,6 +24,9 @@ namespace App.Domain.Services.TodoListAgg
             return result;
         }
 
-        
+        public int ChangeTaskStatus(int taskId)
+        {
+            return todoRepository.ChangeTaskStatus(taskId);
+        }
     }
 }

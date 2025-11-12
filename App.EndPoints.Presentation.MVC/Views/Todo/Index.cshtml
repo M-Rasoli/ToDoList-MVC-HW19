@@ -29,7 +29,7 @@
                                 وضعیت
                             </th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                عملیات
+                                انجام شده
                             </th>
                         </tr>
                     </thead>
@@ -61,14 +61,14 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <form asp-controller="Todo" asp-action="ToggleDone" method="post" style="display:inline;">
+                                    <form asp-controller="Todo" asp-action="ChangeTaskStatus" method="post" style="display:inline;">
                                         <input type="hidden" name="taskId" value="@task.Id" />
                                         <input type="checkbox" onchange="this.form.submit()" @(task.IsDone ? "checked" : "") />
                                     </form>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a asp-controller="User" asp-action="" asp-route-userId="@task.Id" class="px-3 py-1 bg-red-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">حذف</a>
+                                    <a asp-controller="Todo" asp-action="" asp-route-userId="@task.Id" class="px-3 py-1 bg-red-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">حذف</a>
                                 </td>
                             </tr>
                         }
