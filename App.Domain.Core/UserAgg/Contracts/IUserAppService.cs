@@ -12,6 +12,6 @@ namespace App.Domain.Core.UserAgg.Contracts
     {
         Result<LoginUserDto> Login(string userName, string password);
         Result<bool> Register(RegisterUserDto user);
-        Result<GetUserTasksDto> GetUserTasks(int userId);
+        Result<List<GetUserTasksDto>> GetUserTasks(int userId);
     }
 }

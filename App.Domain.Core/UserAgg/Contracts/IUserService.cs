@@ -12,7 +12,7 @@ namespace App.Domain.Core.UserAgg.Contracts
     {
         LoginUserDto Login(string userName);
         int Register(RegisterUserDto user);
-        GetUserTasksDto GetUserTasks(int userId);
+        //GetUserTasksDto GetUserTasks(int userId);
         bool IsUserNameExist(string userName);
     }
 }

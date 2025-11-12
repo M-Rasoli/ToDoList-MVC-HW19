@@ -5,11 +5,11 @@
 <main class="flex-1 overflow-x-hidden overflow-y-auto md:mr-64 p-6 transition-all duration-300">
 
     <section id="table-section" class="mb-8">
-        <h2 class="text-2xl font-semibold text-gray-700 mb-4">مدیریت کاربران</h2>
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">مدیریت تسک ها</h2>
 
         <div class="card p-6">
 
-            <a asp-controller="User" asp-action="AddUser" class="btn btn-primary p-2 m-2 w-40">ایجاد تسک جدید</a>
+            <a asp-controller="Todo" asp-action="Add" class="btn btn-primary p-2 m-2 w-40">ایجاد تسک جدید</a>
 
             <!-- Table Container (Responsive Scroll) -->
             <div class="overflow-x-auto rounded-lg border border-gray-200">
@@ -23,10 +23,10 @@
                                 عنوان
                             </th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                نام کامل
+                                تاریخ سر رسید
                             </th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                نقش
+                                وضعیت
                             </th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 عملیات
@@ -44,42 +44,36 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@task.DueDateShamsi</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     @{
-                                        if (@task.IsDone)
+                                        if (task.IsDone)
                                         {
-                                            <label style="color:green"> انجام شده </label>
+                                            <label style="color:green">انجام شده</label>
+                                        }
+                                        else if (!task.IsDone && task.DueDate.Date < DateTime.Now.Date)
+                                        {
+                                            <label style="color:red">موعد گذشته</label>
                                         }
                                         else
                                         {
-                                            <label style="color:red"> مشتری </label>
+                                            <label style="color:blue">در حال انتظار</label>
                                         }
-
                                     }
 
                                 </td>
-                                @*    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    @{
-                                        if (user.IsAdmin)
-                                        {
-                                            <label style="color:green"> ادمین </label>
-                                        }
-                                        else
-                                        {
-                                            <label style="color:red"> کاربر </label>
-                                        }
-                                    }
-                                </td> *@
 
-
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a asp-controller="User" asp-action="Update" asp-route-userId="@user.Id" class="px-3 py-1 bg-yellow-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">ویرایش</a>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <form asp-controller="Todo" asp-action="ToggleDone" method="post" style="display:inline;">
+                                        <input type="hidden" name="taskId" value="@task.Id" />
+                                        <input type="checkbox" onchange="this.form.submit()" @(task.IsDone ? "checked" : "") />
+                                    </form>
                                 </td>
+
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a asp-controller="User" asp-action="DeleteUser" asp-route-userId="@user.Id" class="px-3 py-1 bg-red-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">حذف</a>
+                                    <a asp-controller="User" asp-action="" asp-route-userId="@task.Id" class="px-3 py-1 bg-red-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">حذف</a>
                                 </td>
                             </tr>
                         }
 
-                        <!-- More Data Rows can be added here -->
+                        
                     </tbody>
                 </table>
             </div>

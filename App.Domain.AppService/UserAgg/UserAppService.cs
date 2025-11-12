@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using App.Domain.Core._common.Entities;
+using App.Domain.Core.TodoListAgg.Contracts;
 using App.Domain.Core.UserAgg.Contracts;
 using App.Domain.Core.UserAgg.Dtos;
 
 namespace App.Domain.AppService.UserAgg
 {
-    public class UserAppService(IUserService userService) : IUserAppService
+    public class UserAppService(IUserService userService , ITodoService todoService) : IUserAppService
     {
-        public Result<GetUserTasksDto> GetUserTasks(int userId)
+        public Result<List<GetUserTasksDto>> GetUserTasks(int userId)
         {
-            var result = userService.GetUserTasks(userId);
+            var result = todoService.GetUserTasks(userId);
             if (result is not null)
             {
-                return Result<GetUserTasksDto>.Success(message: "", result);
+                return Result<List<GetUserTasksDto>>.Success(message: "", result);
             }
             else
             {
-                return Result<GetUserTasksDto>.Failure(message: "لیست کار های شما خالی است.");
+                return Result<List<GetUserTasksDto>>.Failure(message: "لیست کار های شما خالی است.");
             }
         }
 

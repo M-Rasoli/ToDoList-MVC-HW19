@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using App.Domain.Core.TodoListAgg.Contracts;
+using App.Domain.Core.TodoListAgg.Dtos;
+using App.Domain.Core.TodoListAgg.Entities;
 using App.Domain.Core.UserAgg.Dtos;
 using App.Infrastructure.Persistence;
 
@@ -11,6 +13,20 @@ namespace App.Infrastructure.Repositories.TodoListAgg
 {
     public class TodoRepository(AppDbContext _context) : ITodoRepository
     {
+        public int AddNewTask(AddNewTodoDto task)
+        {
+            TodoList newTodo = new TodoList()
+            {
+                Title = task.Title,
+                DueDate = task.DueDate,
+                DueDateShamsi = task.DueDateShamsi,
+                CategoryId = task.CategoryId,
+                UserId = task.UserId
+            };
+            _context.TodoLists.Add(newTodo);
+            return _context.SaveChanges();
+        }
+
         public List<GetUserTasksDto> GetUserTasks(int userId)
         {
             return _context.TodoLists.Where(t => t.UserId == userId)

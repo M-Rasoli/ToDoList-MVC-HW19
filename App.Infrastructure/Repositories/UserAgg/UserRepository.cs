@@ -14,17 +14,6 @@ namespace App.Infrastructure.Repositories.UserAgg
 {
     public class UserRepository(AppDbContext _context) : IUserRepository
     {
-        public List<GetUserTasksDto> GetUserTasks(int userId)
-        {
-            return _context.Users.Where(u => u.Id== userId)
-                .Include(u => u.TdoLists)
-                .Select(u => new GetUserTasksDto()
-                {
-                    
-                }).Tolist();
-
-        }
-
         public bool IsUserNameExist(string userName)
         {
             return _context.Users.Any(u => u.UserName.ToLower() == userName);

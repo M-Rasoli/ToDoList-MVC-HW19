@@ -11,10 +11,10 @@ namespace App.Domain.Services.UserAgg
 {
     public class UserService(IUserRepository userRepository) : IUserService
     {
-        public GetUserTasksDto GetUserTasks(int userId)
-        {
-            return userRepository.GetUserTasks(userId);
-        }
+        //public GetUserTasksDto GetUserTasks(int userId)
+        //{
+        //    return userRepository.GetUserTasks(userId);
+        //}
 
         public bool IsUserNameExist(string userName)
         {

@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._common.Entities;
+using App.Domain.Core.TodoListAgg.Dtos;
 using App.Domain.Core.UserAgg.Dtos;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,6 @@ namespace App.Domain.Core.TodoListAgg.Contracts
     public interface ITodoAppService
     {
         Result<List<GetUserTasksDto>> GetUserTasks(int userId);
+        Result<bool> AddNewTask(AddNewTodoDto task);
     }
 }
