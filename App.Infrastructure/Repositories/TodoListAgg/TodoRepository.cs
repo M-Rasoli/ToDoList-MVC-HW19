@@ -75,16 +75,7 @@ namespace App.Infrastructure.Repositories.TodoListAgg
                     result = result;
                     break;
             }
-            //result = sortOrder switch
-            //{
-            //    "title-asc" => result.OrderBy(x => x.Title),
-            //    "title-desc" => result.OrderByDescending(x => x.Title),
-            //    "date-asc" => result.OrderBy(x => x.DueDate),
-            //    "date-desc" => result.OrderByDescending(x=> x.DueDate),
-            //    "is-done-false" => result.OrderBy(x => !x.IsDone),
-            //    "is-done-true" => result.OrderBy(x=> x.IsDone),
-            //    _ => result
-            //};
+            
             return result.ToList();
 
         }
