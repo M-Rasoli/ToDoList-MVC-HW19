@@ -72,7 +72,7 @@ namespace App.EndPoints.Presentation.MVC.Controllers
                 return RedirectToAction("Index", "Todo");
             }
         }
-
+        
         public IActionResult Delete(int taskId)
         {
             var result = todoAppService.DeleteTask(taskId);
