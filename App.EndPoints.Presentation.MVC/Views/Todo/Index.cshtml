@@ -11,6 +11,52 @@
 
             <a asp-controller="Todo" asp-action="Add" class="btn btn-primary p-2 m-2 w-40">ایجاد تسک جدید</a>
 
+            <form method="get" asp-controller="Todo" asp-action="Index"
+                  class="mb-4 flex flex-col md:flex-row md:items-center gap-3 bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+
+                <div class="flex items-center gap-2 flex-1">
+                    <input type="text" id="user-search" name="searchTerm"
+                           placeholder="جستجو بر اساس عنوان، دسته‌بندی..."
+                           class="p-3 flex-1 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" />
+
+                    <button type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-3 rounded-lg shadow transition duration-150">
+                        🔍 جستجو
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <label for="sortSelect" class="text-gray-700 font-medium whitespace-nowrap">
+                        مرتب‌سازی:
+                    </label>
+
+                    <select id="sortSelect" name="sortOrder"
+                            onchange="this.form.submit()"
+                            class="appearance-none bg-gray-50 border border-gray-300 text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 font-[inherit]">
+                        <option value="default">پیش‌فرض</option>
+                        <option value="title-asc">دسته‌بندی ↑ (A → Z)</option>
+                        <option value="title-desc">دسته‌بندی ↓ (Z → A)</option>
+                        <option value="date-desc">تاریخ نزدیک‌ترین → دورترین</option>
+                        <option value="date-asc">تاریخ دورترین → نزدیک‌ترین</option>
+                        <option value="is-done-false">انجام‌نشده‌ها</option>
+                        <option value="is-done-true">انجام‌شده‌ها</option>
+                    </select>
+                </div>
+            </form>
+
+
+            @*    <form asp-controller="Todo" asp-action="Index" method="get" id="sortForm" class="controls" role="region" aria-label="کنترل مرتب‌سازی">
+                <label for="sortSelect">مرتب‌سازی:</label>
+                <select id="sortSelect" name="sortOrder" onchange="document.getElementById('sortForm').submit()">
+                    <option value="default">پیش‌فرض</option>
+                    <option value="title-asc">دسته بندی ↑ (A → Z)</option>
+                    <option value="title-desc">دسته بندی ↓ (Z → A)</option>
+                    <option value="date-desc">تاریخ نزدیک ترین → دور ترین</option>
+                    <option value="date-asc">تاریخ دور ترین → نزدیک ترین</option>
+                    <option value="is-done-false">انجام نشده ها</option>
+                    <option value="is-done-true">انجام شده ها</option>
+                </select>
+            </form> *@
             <!-- Table Container (Responsive Scroll) -->
             <div class="overflow-x-auto rounded-lg border border-gray-200">
                 <table class="min-w-full divide-y divide-gray-200" id="user-table">
@@ -21,6 +67,9 @@
                             </th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 عنوان
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                دسته بندی
                             </th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 تاریخ سر رسید
@@ -41,6 +90,7 @@
 
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">@task.Id</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@task.Title</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@task.Category</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@task.DueDateShamsi</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     @{
@@ -68,12 +118,12 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a asp-controller="Todo" asp-action="" asp-route-userId="@task.Id" class="px-3 py-1 bg-red-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">حذف</a>
+                                    <a asp-controller="Todo" asp-action="Delete" asp-route-userId="@task.Id" class="px-3 py-1 bg-red-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">حذف</a>
                                 </td>
                             </tr>
                         }
 
-                        
+
                     </tbody>
                 </table>
             </div>

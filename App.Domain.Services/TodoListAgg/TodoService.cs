@@ -18,15 +18,20 @@ namespace App.Domain.Services.TodoListAgg
             return todoRepository.AddNewTask(task);
         }
 
-        public List<GetUserTasksDto> GetUserTasks(int userId)
+        public List<GetUserTasksDto> GetUserTasks(int userId , string sortOrder, string searchTerm)
         {
-            var result = todoRepository.GetUserTasks(userId);
+            var result = todoRepository.GetUserTasks(userId , sortOrder, searchTerm);
             return result;
         }
 
         public int ChangeTaskStatus(int taskId)
         {
             return todoRepository.ChangeTaskStatus(taskId);
+        }
+
+        public int DeleteTask(int taskId)
+        {
+            return todoRepository.DeleteTask(taskId);
         }
     }
 }

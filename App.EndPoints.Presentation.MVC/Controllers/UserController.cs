@@ -9,16 +9,17 @@ namespace App.EndPoints.Presentation.MVC.Controllers
     {
         public IActionResult Index()
         {
-            var tasks = todoAppService.GetUserTasks(LoggedInUser.OnlineUSer.Id);
-            if (!tasks.IsSuccess)
-            {
-                ViewBag.Error = tasks.Message;
-                return View();
-            }
-            else
-            {
-                return View(tasks.Data);
-            }
+            //var tasks = todoAppService.GetUserTasks(LoggedInUser.OnlineUSer.Id);
+            //if (!tasks.IsSuccess)
+            //{
+            //    ViewBag.Error = tasks.Message;
+            //    return View();
+            //}
+            //else
+            //{
+            //    return View(tasks.Data);
+            //}
+            return View();
         }
     }
 }

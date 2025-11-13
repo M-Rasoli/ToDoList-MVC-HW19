@@ -11,8 +11,9 @@ namespace App.Domain.Core.TodoListAgg.Contracts
 {
     public interface ITodoService
     {
-        List<GetUserTasksDto> GetUserTasks(int userId);
+        List<GetUserTasksDto> GetUserTasks(int userId, string sortOrder, string searchTerm);
         int AddNewTask(AddNewTodoDto task);
         int ChangeTaskStatus(int taskId);
+        int DeleteTask(int taskId);
     }
 }

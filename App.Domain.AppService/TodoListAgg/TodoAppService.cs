@@ -25,9 +25,9 @@ namespace App.Domain.AppService.TodoListAgg
             }
         }
 
-        public Result<List<GetUserTasksDto>> GetUserTasks(int userId)
+        public Result<List<GetUserTasksDto>> GetUserTasks(int userId , string sortOrder,string searchTerm)
         {
-            var result = todoService.GetUserTasks(userId);
+            var result = todoService.GetUserTasks(userId, sortOrder, searchTerm);
             if (result.Count < 0)
             {
                 return Result<List<GetUserTasksDto>>.Failure(message: "لیست کار های شما خالی است.");
@@ -50,6 +50,19 @@ namespace App.Domain.AppService.TodoListAgg
                 return Result<bool>.Failure(message: "مشکلی پیش آمده لحظاتی بعد تلاش کنید.");
             }
 
+        }
+
+        public Result<bool> DeleteTask(int taskId)
+        {
+            var result = todoService.DeleteTask(taskId);
+            if (result > 0)
+            {
+                return Result<bool>.Success(message:"تسک با موفقیت حذف شد.");
+            }
+            else
+            {
+                return Result<bool>.Failure(message:"مشکلی پیش آمده لحظاتی بعد تلاش کنید.");
+            }
         }
     }
 }
