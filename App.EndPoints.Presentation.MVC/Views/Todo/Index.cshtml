@@ -34,8 +34,8 @@
                             onchange="this.form.submit()"
                             class="appearance-none bg-gray-50 border border-gray-300 text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 font-[inherit]">
                         <option value="default">پیش‌فرض</option>
-                        <option value="title-asc">دسته‌بندی ↑ (A → Z)</option>
-                        <option value="title-desc">دسته‌بندی ↓ (Z → A)</option>
+                        <option value="title-asc">عنوان ↑ (A → Z)</option>
+                        <option value="title-desc">عنوان‌ ↓ (Z → A)</option>
                         <option value="date-desc">تاریخ نزدیک‌ترین → دورترین</option>
                         <option value="date-asc">تاریخ دورترین → نزدیک‌ترین</option>
                         <option value="is-done-false">انجام‌نشده‌ها</option>
@@ -118,7 +118,7 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a asp-controller="Todo" asp-action="Delete" asp-route-taskId="@task.Id" class="px-3 py-1 bg-red-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">حذف</a>
+                                    <a asp-controller="Todo" asp-action="Delete" asp-route-taskId="@task.Id" class="px-3 py-1 bg-red-500 text-white text-xs rounded-lg hover:bg-blue-600 transition duration-150 shadow-md" onclick="return confirm('تسک حذف شود ؟');">حذف</a>
                                 </td>
                             </tr>
                         }

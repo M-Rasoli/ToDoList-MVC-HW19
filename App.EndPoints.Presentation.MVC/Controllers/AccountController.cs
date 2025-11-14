@@ -44,7 +44,17 @@ namespace App.EndPoints.Presentation.MVC.Controllers
         [HttpPost]
         public IActionResult Register(RegisterUserDto model)
         {
-            return View();
+            var result = userAppService.Register(model);
+            if (result.IsSuccess)
+            {
+                ViewBag.Success = result.Message;
+                return View();
+            }
+            else
+            {
+                ViewBag.Error = result.Message;
+                return View(model);
+            }
         }
     }
 }

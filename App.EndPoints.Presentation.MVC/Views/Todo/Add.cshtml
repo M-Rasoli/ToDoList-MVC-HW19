@@ -22,7 +22,7 @@
                     <div>
                         <label asp-for="@Model.NewTodo.CategoryId" class="block text-sm font-medium text-gray-700 mb-1">انتخاب دسته بندی</label>
                         <select asp-for="@Model.NewTodo.CategoryId"
-                                class="mt-1 p-3 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 bg-white">
+                                class="mt-1 p-3 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 bg-white" required>
                             <option value="" disabled selected>انتخاب دسته بندی</option>
                             @foreach (var category in Model.Categories)
                             {
